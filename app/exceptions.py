@@ -12,5 +12,13 @@ class InterfaceError(BaseError):
     pass
 
 
-class InvalidSysArgs(CommandError):
+class InvalidCommand(CommandError):
+    pass
+
+
+class UnknownCommandOptions(CommandError):
+    pass
+
+
+class FileNotFoundCommandError(CommandError):
     pass
