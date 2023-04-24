@@ -1,6 +1,10 @@
+from errors import ErrorWidget
+
+
 class BaseError(Exception):
 
-    def display():
+    @classmethod
+    def display(cls):
         pass
 
 
@@ -9,7 +13,12 @@ class CommandError(BaseError):
 
 
 class InterfaceError(BaseError):
-    pass
+    message = None
+    code = None
+
+    def __init__(self):
+        ErrorWidget(exception=self)
+        super().__init__()
 
 
 class InvalidCommand(CommandError):
@@ -22,3 +31,7 @@ class UnknownCommandOptions(CommandError):
 
 class FileNotFoundCommandError(CommandError):
     pass
+
+
+class UnrunnableApplication(InterfaceError):
+    message = "Can't run the application"
